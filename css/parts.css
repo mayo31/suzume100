@@ -1,0 +1,881 @@
+@charset "utf8";
+
+input {
+    -webkit-appearance: none;
+}
+
+button,
+input[type="submit"] {
+    border: none;
+    background: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    line-height: 0;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  position: absolute;
+  left: -9999px;
+  visibility: hidden;
+  z-index: -9999;
+}
+
+.count {
+  display: inline-block;
+  width: calc(100% - 24px);
+  height: 60px;
+  line-height: 60px;
+  margin: 20px 12px 0 12px;
+  padding: 0 1em;
+  color: #fff;
+  border-radius: 4px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(136,183,137,1)), color-stop(100%,rgba(150,183,136,1)));
+  background: -webkit-linear-gradient(top,  rgba(136,183,137,1) 0%,rgba(150,183,136,1) 100%);
+  background: linear-gradient(to bottom,  rgba(136,183,137,1) 0%,rgba(150,183,136,1) 100%);
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.count#start {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+/*----- 牌姿設定 -----*/
+
+#settings-haishi {
+  display: none;
+  margin: 10px;
+  border-radius: 3px;
+}
+
+#settings-haishi > li,
+#haishi-list > li {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 44px;
+  line-height: 40px;
+  padding: 2px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+[data-settings="qnum"] {
+  color: rgb(136,183,137);
+}
+
+[data-settings] button {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  border-radius: 3px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(136,183,137,1)), color-stop(100%,rgba(150,183,136,1)));
+  background: -webkit-linear-gradient(top,  rgba(136,183,137,1) 0%,rgba(150,183,136,1) 100%);
+  background: linear-gradient(to bottom,  rgba(136,183,137,1) 0%,rgba(150,183,136,1) 100%);
+  text-align: center;
+}
+
+[data-settings] [data-oyako="oyako02"],
+[data-settings] [data-hora="hora02"] {
+  color: rgba(136,183,137,1);
+  border: 1px solid  rgba(136,183,137,0.5);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(230,242,230,0.1)), color-stop(100%,rgba(234,242,230,0.1)));
+  background: -webkit-linear-gradient(top,  rgba(230,242,230,0.2) 0%,rgba(234,242,230,0.1) 100%);
+  background: linear-gradient(to bottom,  rgba(230,242,230,0.2) 0%,rgba(234,242,230,0.1) 100%);
+
+}
+
+[data-settings] [data-bakaze="bakaze01"],
+[data-settings] [data-jicha="jicha01"]{
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7e98c4), color-stop(100%,#8ea5c8));
+  background: -webkit-linear-gradient(top, #7e98c4 0%,#8ea5c8 100%);
+  background: linear-gradient(to bottom, #7e98c4 0%,#8ea5c8 100%);
+}
+
+[data-settings] [data-bakaze="bakaze02"],
+[data-settings] [data-jicha="jicha02"]{
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c37f9a), color-stop(100%,#ce92aa));
+  background: -webkit-linear-gradient(top, #c37f9a 0%,#ce92aa 100%);
+  background: linear-gradient(to bottom, #c37f9a 0%,#ce92aa 100%);
+}
+
+[data-settings] [data-bakaze="bakaze03"],
+[data-settings] [data-jicha="jicha03"]{
+  color: #666;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.8)), color-stop(100%,rgba(255,255,255,1)));
+  background: -webkit-linear-gradient(top,  rgba(255,255,255,0.8) 0%,rgba(255,255,255,1) 100%);
+  background: linear-gradient(to bottom,  rgba(255,255,255,0.8) 0%,rgba(255,255,255,1) 100%);
+  -webkit-box-shadow: inset 1px 0 0 rgba(80,80,80,0.5), inset -1px 0 0 rgba(80,80,80,0.5), inset 0 1px 0 rgba(80,80,80,0.5), inset 0 -1px 0 rgba(80,80,80,0.5);
+  box-shadow: inset 1px 0 0 rgba(80,80,80,0.5), inset -1px 0 0 rgba(80,80,80,0.5), inset 0 1px 0 rgba(80,80,80,0.5), inset 0 -1px 0 rgba(80,80,80,.5);
+}
+
+[data-settings] [data-bakaze="bakaze04"],
+[data-settings] [data-jicha="jicha04"]{
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5a5a5a), color-stop(100%,#707970));
+  background: -webkit-linear-gradient(top, #5a5a5a 0%,#707970 100%);
+  background: linear-gradient(to bottom, #5a5a5a 0%,#707970 100%);
+}
+
+#social ul button.hover:after,
+[data-settings] button.hover:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.2);
+}
+
+/*----- 牌姿 -----*/
+
+#haishi {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 76px;
+    padding: 10px 20px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(136,183,137,1)), color-stop(100%,rgba(150,183,136,1)));
+    background: -webkit-linear-gradient(top,  rgba(136,183,137,1) 0%,rgba(150,183,136,1) 100%);
+    background: linear-gradient(to bottom,  rgba(136,183,137,1) 0%,rgba(150,183,136,1) 100%);
+    text-align: center;
+    white-space: nowrap;
+    z-index: 500;
+}
+
+#landscape #haishi {
+  height: 60px;
+  padding: 7px 5px;
+}
+
+#haishi.mentsu-input {
+  bottom: 169px;
+}
+
+#landscape #haishi.mentsu-input {
+  bottom: 128px;
+}
+
+#haishi ul {
+  position: relative;
+  display: inline-block;
+  margin-right: 5px;
+  -webkit-transition: all 0.3s 0s ease;
+  transition: all 0.3s 0s ease;
+}
+
+#haishi > ul:last-child > li:last-child {
+  margin: 0 0 0 5px!important;
+}
+
+#haishi.chitoi > ul:last-child > li:last-child {
+  margin: 0 0 0 2px!important;
+}
+
+#haishi.chitoi > ul > li:nth-child(2n) {
+  margin-right: 5px!important;
+}
+
+[data-hai] {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #fff;
+    vertical-align: bottom;
+}
+
+[data-hai]:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-block;
+    width: 30px;
+    height: 40px;
+    background: url(../img/hai-sprite.png) no-repeat 30px 40px;
+    background-size: 300px auto;
+    -moz-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.landscape:before {
+  -webkit-transform: translate(-50%,-50%) rotate(90deg);
+  transform: translate(-50%,-50%) rotate(90deg);
+}
+
+[id*="haishi"] [data-hai] {
+  width: 40px;
+  height: 56px;
+  margin-left: 2px;
+  border: none;
+  border-radius: 4px;
+}
+
+[id*="haishi"] [data-hai].landscape,
+#landscape #result-haishi-table .landscape {
+  width: 56px;
+  height: 40px;
+}
+
+#landscape #haishi [data-hai] {
+  width: 34px;
+  height: 45px;
+}
+
+#landscape #haishi [data-hai]:before {
+  -webkit-transform: translate(-50%,-50%) scale(0.9);
+  transform: translate(-50%,-50%) scale(0.9);
+}
+
+#landscape #haishi .landscape:before {
+  -webkit-transform: translate(-50%,-50%) scale(0.9) rotate(90deg);
+  transform: translate(-50%,-50%) scale(0.9) rotate(90deg);
+}
+
+#landscape #haishi .landscape {
+  width: 45px;
+  height: 34px;
+}
+
+[data-mentsu*="kakan"] .landscape {
+  position: relative;
+  top: -16px;
+}
+
+[data-mentsu*="kakan"]:last-child .landscape:nth-child(3) {
+  left: 3px;
+}
+
+[data-mentsu*="kakan"] .landscape + .landscape {
+  box-shadow: 0 -2px 0 0 rgba(136,183,137,1);
+}
+
+#landscape [data-mentsu*="kakan"] .landscape {
+  position: relative;
+  top: -11px;
+}
+
+#result-haishi-table [data-mentsu*="kakan"] .landscape {
+  position: relative;
+  top: -12px;
+  box-shadow: none;
+}
+
+[data-mentsu*="kakan"] .landscape + .landscape {
+  top: 0;
+  left: -58px;
+  margin-right: -58px;
+}
+
+[data-mentsu*="kakan"]:last-child .landscape:nth-child(2) + .landscape {
+  top: 0;
+  left: -58px;
+  margin-right: -58px;
+}
+
+#landscape [data-mentsu*="kakan"] .landscape + .landscape {
+  top: 0;
+  left: -47px;
+  margin-right: -47px;
+}
+
+#result-haishi-table [data-mentsu*="kakan"] .landscape + .landscape,
+#landscape #result-haishi-table [data-mentsu*="kakan"] .landscape + .landscape {
+  top: 0;
+  left: -46px;
+  margin-right: -51px;
+}
+
+#result-haishi-table [data-mentsu*="kakan"] li:not(.landscape) + .landscape:nth-child(3),
+#landscape #result-haishi-table [data-mentsu*="kakan"] li:not(.landscape) + .landscape:nth-child(3) {
+  top: -12px;
+  left: 0;
+}
+
+[data-mentsu*="ankan"] > li:first-child,
+[data-mentsu*="ankan"] > li:last-child {
+  background: #f0e286!important;
+}
+
+[data-mentsu*="ankan"] > li:first-child:before,
+[data-mentsu*="ankan"] > li:last-child:before {
+  display: none;
+}
+
+/*----- data-hai -----*/
+
+.dora {
+  background: #fffe9c;
+}
+
+[data-hai*="a01"]:before {
+  background-position: 0 0;
+}
+
+[data-hai*="a02"]:before {
+  background-position: -30px 0;
+}
+
+[data-hai*="a03"]:before {
+  background-position: -60px 0;
+}
+
+[data-hai*="a04"]:before {
+  background-position: -90px 0;
+}
+
+[data-hai*="a05"]:before {
+  background-position: -120px 0;
+}
+
+[data-hai*="a05"].red:before {
+  background-position: -270px 0;
+}
+
+[data-hai*="a06"]:before {
+  background-position: -150px 0;
+}
+
+[data-hai*="a07"]:before {
+  background-position: -180px 0;
+}
+
+[data-hai*="a08"]:before {
+  background-position: -210px 0;
+}
+
+[data-hai*="a09"]:before {
+  background-position: -240px 0;
+}
+
+[data-hai*="b01"]:before {
+  background-position: 0 -40px;
+}
+
+[data-hai*="b02"]:before {
+  background-position: -30px -40px;
+}
+
+[data-hai*="b03"]:before {
+  background-position: -60px -40px;
+}
+
+[data-hai*="b04"]:before {
+  background-position: -90px -40px;
+}
+
+[data-hai*="b05"]:before {
+  background-position: -120px -40px;
+}
+
+[data-hai*="b05"].red:before {
+  background-position: -270px -40px;
+}
+
+[data-hai*="b06"]:before {
+  background-position: -150px -40px;
+}
+
+[data-hai*="b07"]:before {
+  background-position: -180px -40px;
+}
+
+[data-hai*="b08"]:before {
+  background-position: -210px -40px;
+}
+
+[data-hai*="b09"]:before {
+  background-position: -240px -40px;
+}
+
+[data-hai*="c01"]:before {
+  background-position: 0 -80px;
+}
+
+[data-hai*="c02"]:before {
+  background-position: -30px -80px;
+}
+
+[data-hai*="c03"]:before {
+  background-position: -60px -80px;
+}
+
+[data-hai*="c04"]:before {
+  background-position: -90px -80px;
+}
+
+[data-hai*="c05"]:before {
+  background-position: -120px -80px;
+}
+
+[data-hai*="c05"].red:before {
+  background-position: -270px -80px;
+}
+
+[data-hai*="c06"]:before {
+  background-position: -150px -80px;
+}
+
+[data-hai*="c07"]:before {
+  background-position: -180px -80px;
+}
+
+[data-hai*="c08"]:before {
+  background-position: -210px -80px;
+}
+
+[data-hai*="c09"]:before {
+  background-position: -240px -80px;
+}
+
+[data-hai*="d01"]:before {
+  background-position: 0 -120px;
+}
+
+[data-hai*="d02"]:before {
+  background-position: -30px -120px;
+}
+
+[data-hai*="d03"]:before {
+  background-position: -60px -120px;
+}
+
+[data-hai*="d04"]:before {
+  background-position: -90px -120px;
+}
+
+[data-hai*="d05"]:before {
+  background-position: -120px -120px;
+}
+
+[data-hai*="d06"]:before {
+  background-position: -150px -120px;
+}
+
+[data-hai*="d07"]:before {
+  background-position: -180px -120px;
+}
+
+/*----- suzume keyboard UI-----*/
+
+#tenkey {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  display: none;
+  width: 186px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+#tenkey li {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  margin: 1px;
+  vertical-align: top;
+}
+
+#tenkey button {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  color: #fff;
+  border-radius: 4px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(136,183,137,1)), color-stop(100%,rgba(150,183,136,1)));
+  background: -webkit-linear-gradient(top,  rgba(136,183,137,1) 0%,rgba(150,183,136,1) 100%);
+  background: linear-gradient(to bottom,  rgba(136,183,137,1) 0%,rgba(150,183,136,1) 100%);
+  text-align: center;
+  font-size: 1.5em;
+}
+
+#tenkey #key-enter {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c37f9a), color-stop(100%,#ce92aa));
+  background: -webkit-linear-gradient(top, #c37f9a 0%,#ce92aa 100%);
+  background: linear-gradient(to bottom, #c37f9a 0%,#ce92aa 100%);
+  font-size: 1.2em;
+}
+
+#tenkey #key-delete {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(120,120,120,1)), color-stop(100%,rgba(120,120,120,0.8)));
+  background: -webkit-linear-gradient(top, rgba(120,120,120,1) 0%,rgba(120,120,120,0.8) 100%);
+  background: linear-gradient(to bottom, rgba(120,120,120,1) 0%,#rgba(120,120,120,0.8) 100%);
+}
+
+#tenkey button.hover:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.4);
+}
+
+.disabled {
+  pointer-events: none!important;
+  opacity: 0.5!important;
+  background: #efefef!important;
+}
+
+#answer {
+  position: relative;
+  display: none;
+  width: 180px;
+  height: 1.5em;
+  margin: 40px auto 0 auto;
+  color: rgb(136,183,137);
+  border-bottom: 2px solid rgb(136,183,137);
+  font-size: 2em;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+#landscape #answer {
+  margin: 10px auto 0 auto;
+}
+
+#answer:before,
+#answer:after {
+  position: absolute;
+  bottom: 0;
+  font-size: 0.8em;
+}
+
+#answer:before {
+  content: "計";
+  left: 0;
+}
+
+#answer:after {
+  content: "符";
+  right: 0;
+}
+
+#landscape #tenkey {
+  width: 100%;
+  bottom: 70px;
+}
+
+#landscape #tenkey ul {
+  text-align: center;
+}
+
+#landscape #tenkey li {
+  position: relative;
+  display: inline-block;
+  margin: 0 1px;
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+}
+
+#landscape #tenkey button {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+}
+
+#landscape #tenkey li:last-child,
+#landscape #tenkey #key-enter {
+  width: 60px;
+}
+
+#landscape #tenkey #key-enter,
+#landscape #tenkey #key-delete {
+  position: relative;;
+}
+
+#landscape #tenkey li:nth-child(10) {
+  left: 46px;
+}
+
+#landscape #tenkey li:nth-child(11) {
+  left: -46px;
+}
+
+/*-- 計算結果 --*/
+
+#result,
+#help {
+  overflow-y: scroll;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  display: none;
+  width: 100%;
+  padding-bottom: 20px;
+  background: #f9f9f9;
+  z-index: 9999;
+}
+
+#result:target,
+#help:target {
+  display: block;
+}
+
+#result-scores {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  padding: 20px;
+  color: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5a5a5a), color-stop(100%,#707970));
+  background: -webkit-linear-gradient(top, #5a5a5a 0%,#707970 100%);
+  background: linear-gradient(to bottom, #5a5a5a 0%,#707970 100%);
+  text-align: center;
+}
+
+#result-scores strong {
+  margin: 0 0.5em;
+  font-size: 3rem;
+}
+
+table[id*="result"] {
+  width: 100%;
+}
+
+table[id*="result"] th,
+table[id*="result"] td {
+  padding: 5px;
+  border-bottom: 1px dashed #88b789;
+  vertical-align: middle;
+}
+
+table[id*="result"] td {
+  text-align: center;
+}
+
+table[id*="result"] th {
+  padding: 10px 5px 10px 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+table[id*="result"] td:last-child {
+  padding: 10px 10px 10px 5px;
+  text-align: right;
+}
+
+#result-haishi-table [data-hai] {
+  margin: -5px -3px;
+  border: 1px solid #ccc;
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+}
+
+#result-haishi-table [data-hai].landscape {
+  margin: -3px -5px;
+}
+
+#result-yaku-table td {
+  width: 99%;
+}
+
+/*-- アコーディオンリスト --*/
+.accordion-list01 {
+  margin: 15px;
+  border: 1px solid #89B788;
+  border-radius: 4px;
+  font-size: 1.2rem;
+}
+
+.accordion-list01 dt,
+.accordion-list01 a,
+.accordion-list01 a:link,
+.accordion-list01 a:visited,
+.accordion-list01 a:hover {
+	cursor: pointer;
+	position: relative;
+  display: block;
+  height: 45px;
+  line-height: 45px;
+  color: #333;
+  border-top: 1px solid #89B788;
+  z-index: 1;
+}
+
+.accordion-list01 dt {
+  height: auto;
+  line-height: 1.5;
+  padding: 0.8em 10px 0.8em 40px;
+}
+
+.accordion-list01 > li:first-child dt {
+  border-top: none;
+}
+
+.accordion-list01 dt.accordion-open {
+  border-bottom: 1px dashed #89B788;
+}
+
+.accordion-list01 dt:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: auto;
+  left: 17px;
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-right: 1px solid #89B788; 
+  border-bottom: 1px solid #89B788; 
+  -webkit-transform: translateY(-5px) rotate(45deg);
+  -moz-transform: translateY(-5px) rotate(45deg);
+  transform: translateY(-5px) rotate(45deg);
+  -webkit-transform-origin: 50% 50%;
+	-moz-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transition: all 0.2s 0s ease;
+  -moz-transition: all 0.2s 0s ease;
+  transition: all 0.2s 0s ease;
+}
+
+.accordion-list01 dt.accordion-open:before {
+  -webkit-transform: translateY(-2px) rotate(225deg);
+  -moz-transform: translateY(-2px) rotate(225deg);
+  transform: translateY(-2px) rotate(225deg);
+}
+
+.accordion-list01 a,
+.accordion-list01 a:link,
+.accordion-list01 a:visited,
+.accordion-list01 a:hover {
+  padding-right: 40px;
+}
+
+.accordion-list01 dd {
+  overflow: hidden;
+  height: 0;
+}
+
+.accordion-list01 dt[class*="accordion"] + dd {
+  -webkit-transition: all 0.2s 0s ease;
+  -moz-transition: all 0.2s 0s ease;
+  transition: all 0.2s 0s ease;
+}
+
+/*----- ヘルプ -----*/
+
+#help ol li {
+	margin: 0 10px 0 25px;
+	padding: 15px 0;
+	list-style: outside decimal;
+}
+
+#help p {
+	padding: 15px;
+}
+
+#help img {
+	display: block;
+	width: 280px;
+	margin: 10px auto 0 auto;
+	border: 1px solid #999;
+}
+
+#help .accordion-list01 {
+	margin-bottom: 20px;
+}
+
+/*----- social -----*/
+
+#social {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+#social.social-open {
+  display: block;
+}
+
+#social p {
+  padding: 0 20px 15px 20px;
+}
+
+#social ul li {
+  height: 50px;
+  border-top: 1px solid #ccc;
+}
+
+#social ul button {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.6rem;
+}
+
+#landscape #social ul li {
+  display: inline-block;
+  width: 49%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#landscape #social ul li:nth-child(2n) {
+  border-left: 1px solid #ccc;
+}
+
+#social svg {
+  position: absolute;
+  right: 50%;
+}
+
+#rating svg {
+  top: 13px;
+  width: 30px;
+  height: 24px;
+  margin-right: 2.6em;
+}
+
+#tweet svg {
+  top: 16px;
+  width: 25px;
+  height: 20px;
+  margin-right: 2.8em;
+}
+
+/* loading */
+
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 9999;
+}
+
+#loading:before {
+  display: block;
+  content: "・・・問題を読み込んでいます・・・";
+  margin: 150px 0 0 0;
+  color: #fff;
+  text-align: center;
+  font-size: 1.5rem;
+}
